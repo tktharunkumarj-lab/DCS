@@ -1,28 +1,22 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import Payment from "./pages/Payment.jsx";
+import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 
 function App() {
-  const isLoggedIn = localStorage.getItem("user"); // simple auth check
+  const isLoggedIn = localStorage.getItem("user");
 
   return (
     <Router>
       <Routes>
-        {/* Login Route */}
         <Route
           path="/"
-          element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/payment" /> : <Login />}
         />
 
-        {/* Dashboard Route (Protected) */}
         <Route
-          path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}
+          path="/payment"
+          element={isLoggedIn ? <Payment /> : <Navigate to="/" />}
         />
-
-        {/* Payments Route */}
-        <Route path="/payments" element={<Payment />} />
       </Routes>
     </Router>
   );

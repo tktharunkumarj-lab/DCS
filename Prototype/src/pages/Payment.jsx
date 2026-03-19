@@ -58,10 +58,31 @@ export default function Payment() {
 
   return (
     <div className="mobile-frame text-gray-800">
-      
+
       {/* ═══════════ HEADER AREA ═══════════ */}
       <div className="pt-12 pb-6 px-6 text-white relative z-10">
-        
+
+        {/* Status Bar Mockup */}
+        <div className="flex justify-between items-center mb-6 text-sm font-medium opacity-90">
+          <span>9:41</span>
+          <div className="flex items-center gap-1.5">
+            {/* Wifi: Solid wedge */}
+            <svg className="w-[15px] h-[15px]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5L23.5 7.6C23 7.2 18.5 4.5 12 4.5C5.5 4.5 1 7.2 0.5 7.6L12 21.5Z" /></svg>
+            {/* Cell Signal: Vertical bars */}
+            <svg className="w-[15px] h-[15px]" viewBox="0 0 16 16" fill="currentColor">
+              <rect x="0" y="10" width="2.5" height="4" />
+              <rect x="4" y="7" width="2.5" height="7" />
+              <rect x="8" y="4" width="2.5" height="10" />
+              <rect x="12" y="1" width="2.5" height="13" fillOpacity="0.4" />
+            </svg>
+            {/* Battery */}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.5 14h-1v-4h1v4zm-2.5-10V2.5c0-.28-.22-.5-.5-.5h-3c-.28 0-.5.22-.5.5V4H7.5C6.67 4 6 4.67 6 5.5v15c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5v-15c0-.83-.67-1.5-1.5-1.5h-3.5zm1 16h-7V6h7v14z" />
+              <rect x="8" y="8" width="8" height="10" fill="white" fillOpacity="0.9" />
+            </svg>
+          </div>
+        </div>
+
         {/* Profile Info */}
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 bg-purple-200 flex-shrink-0">
@@ -77,7 +98,7 @@ export default function Payment() {
 
       {/* ═══════════ MAIN CARDS AREA ═══════════ */}
       <div className="px-4 pb-24 space-y-4 relative z-10 w-full overflow-hidden">
-        
+
         {/* Card 1: Total Wallet Balance */}
         <div className="glass-card p-5">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Total Wallet Balance</p>
@@ -102,7 +123,7 @@ export default function Payment() {
         {/* Card 4: Linked UPI Account */}
         <div className="glass-card p-5">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Linked UPI Account</p>
-          
+
           <div className="bg-gray-50/50 border border-gray-200/50 rounded-xl p-3 flex justify-between items-center mb-4">
             <div>
               <p className="text-sm font-semibold text-gray-800">9XXXXXX123</p>
@@ -134,15 +155,15 @@ export default function Payment() {
         {/* Card 6: Micro-Payout Stream */}
         <div className="glass-card p-5">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Micro-Payout Stream</p>
-          
+
           <div className="toggle-group mb-4">
-            <button 
+            <button
               className={`toggle-btn ${streamMode === 'hourly' ? 'active' : ''}`}
               onClick={() => setStreamMode('hourly')}
             >
               Per Hour
             </button>
-            <button 
+            <button
               className={`toggle-btn ${streamMode === 'lumpsum' ? 'active' : ''}`}
               onClick={() => setStreamMode('lumpsum')}
             >
@@ -286,7 +307,7 @@ export default function Payment() {
             <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
           </svg>
         </div>
-        
+
         {/* Center Scanner Button */}
         <div className="flex flex-col items-center opacity-40">
           <svg className="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
