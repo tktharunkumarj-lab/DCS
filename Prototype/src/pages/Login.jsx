@@ -3,20 +3,22 @@ import { useNavigate } from "react-router-dom";
 import '../styles/login.css';
 import introImage from '../assets/intro.png';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
     const [deliveryId, setDeliveryId] = useState('');
     const [otp, setOtp] = useState('');
-    const [step, setStep] = useState(1); // 1 = enter number, 2 = enter OTP
+    const [step, setStep] = useState(1);
     const [currentTime, setCurrentTime] = useState('');
+
 
     const navigate = useNavigate();
 
+    // Time (optional UI)
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            setCurrentTime(`${hours}:${minutes}`);
+            setCurrentTime(`${hours}:${minutes} `);
         };
 
         updateTime();
@@ -24,7 +26,7 @@ const Login = () => {
         return () => clearInterval(timer);
     }, []);
 
-    // Step 1 → Send OTP
+    // STEP 1 → SEND OTP
     const handleSendOTP = (e) => {
         e.preventDefault();
 
@@ -37,13 +39,16 @@ const Login = () => {
         setStep(2);
     };
 
-    // Step 2 → Verify OTP
+    // STEP 2 → VERIFY OTP
     const handleVerifyOTP = (e) => {
         e.preventDefault();
 
         if (otp === "1234") {
             localStorage.setItem("user", deliveryId);
-            navigate("/dashboard");
+
+            setIsLoggedIn(true); // 🔥 IMPORTANT FIX
+
+            navigate("/payment");
         } else {
             alert("Invalid OTP. Use 1234");
         }
@@ -55,11 +60,6 @@ const Login = () => {
             {/* Status Bar */}
             <div className="status-bar">
                 <span>{currentTime}</span>
-                <div className="status-icons">
-                    <i className="fas fa-signal"></i>
-                    <i className="fas fa-wifi"></i>
-                    <i className="fas fa-battery-full"></i>
-                </div>
             </div>
 
             {/* Illustration */}
@@ -73,7 +73,7 @@ const Login = () => {
                 </div>
             </div>
 
-            {/* Form */}
+            {/* Form Card */}
             <div className="form-card">
 
                 {step === 1 ? (
@@ -126,6 +126,8 @@ const Login = () => {
             <div className="home-indicator"></div>
         </div>
     );
+
+
 };
 
 export default Login;
