@@ -9,11 +9,11 @@ import {
   MdBolt,
   MdAutoGraph
 } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom"; // Add this import
 const Policy = () => {
   const [planType, setPlanType] = useState("daily");
   const [active, setActive] = useState(null);
-
+const navigate = useNavigate();
   const pricing = {
     daily: [30, 40, 55],
     biweekly: [175, 195, 210]
@@ -57,7 +57,9 @@ const Policy = () => {
       ]
     }
   ];
-
+ const handleNavigation = (path) => {
+    navigate(path);
+  };
   return (
     <div className="policy-container">
 
@@ -124,19 +126,19 @@ const Policy = () => {
 
       {/* NAVBAR */}
       <div className="bottom-nav">
-        <div className="nav-item">
+        <div className="nav-item" onClick={() => handleNavigation('/dashboard')}>
           <MdHome size={20} />
           <span>Dashboard</span>
         </div>
 
-        <div className="nav-item active">
+        <div className="nav-item" onClick={() => handleNavigation('/payment')}>
           <MdAttachMoney size={20} />
           <span>Pricing</span>
         </div>
 
-        <div className="nav-item">
+        <div className="nav-item active">
           <MdPerson size={20} />
-          <span>Profile</span>
+          <span>Policy</span>
         </div>
       </div>
 

@@ -9,7 +9,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("user")
   );
-
+console.log("Login status:", isLoggedIn); // Debugging line
   return (
     <Router>
       <Routes>
@@ -27,7 +27,7 @@ function App() {
           path="/payment"
           element={
             isLoggedIn
-              ? <Policy />
+              ? <Payment />
               : <Navigate to="/" />
           }
         />
@@ -37,6 +37,15 @@ function App() {
           element={
             isLoggedIn
               ? <Dashboard />
+              : <Navigate to="/" />
+          }
+        />
+
+        <Route
+          path="/policy"
+          element={
+            isLoggedIn
+              ? <Policy />
               : <Navigate to="/" />
           }
         />

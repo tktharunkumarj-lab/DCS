@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import '../styles/dashboard.css';
 import {
     MdNotifications,
@@ -9,6 +10,7 @@ import {
     MdSend
 } from "react-icons/md";
 import mapImage from '../assets/map.jpeg';
+
 const Dashboard = () => {
     const [time, setTime] = useState("");
     const [chatOpen, setChatOpen] = useState(false);
@@ -16,6 +18,8 @@ const Dashboard = () => {
     const [messages, setMessages] = useState([
         { text: "Hi! How can I help you with your claims today?", sender: "bot" }
     ]);
+    
+    const navigate = useNavigate(); // Initialize navigate function
 
     // Real-time clock
     useEffect(() => {
@@ -54,6 +58,11 @@ const Dashboard = () => {
         if (e.key === 'Enter') {
             handleSend();
         }
+    };
+
+    // Navigation handlers
+    const handleNavigation = (path) => {
+        navigate(path);
     };
 
     return (
@@ -170,7 +179,6 @@ const Dashboard = () => {
                                 onKeyPress={handleKeyPress}
                             />
                             <button className="send-btn" onClick={handleSend}>
-
                                 <MdSend size={20} />
                             </button>
                         </div>
@@ -181,19 +189,19 @@ const Dashboard = () => {
 
             {/* Bottom Nav */}
             <div className="bottom-nav">
-                <div className="nav-item active">
+                <div className="nav-item active" onClick={() => handleNavigation('/dashboard')}>
                     <MdHome size={20} />
                     <span>Dashboard</span>
                 </div>
 
-                <div className="nav-item">
+                <div className="nav-item" onClick={() => handleNavigation('/payment')}>
                     <MdAttachMoney size={20} />
                     <span>Pricing</span>
                 </div>
 
-                <div className="nav-item">
+                <div className="nav-item" onClick={() => handleNavigation('/policy')}>
                     <MdPerson size={20} />
-                    <span>Profile</span>
+                    <span>Policy</span>
                 </div>
             </div>
 
