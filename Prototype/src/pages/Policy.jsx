@@ -1,124 +1,142 @@
-import React from "react";
+import React, { useState } from "react";
 import '../styles/Policy.css';
 import {
   MdHome,
   MdAttachMoney,
   MdPerson,
-  MdSecurity,
-  MdFlashOn,
-  MdPayments,
-  MdReport,
-  MdVerifiedUser,
-  MdInfo
+  MdKeyboardArrowDown,
+  MdEco,
+  MdBolt,
+  MdAutoGraph
 } from "react-icons/md";
 
 const Policy = () => {
+  const [planType, setPlanType] = useState("daily");
+  const [active, setActive] = useState(null);
+
+  const pricing = {
+    daily: [30, 40, 55],
+    biweekly: [175, 195, 210]
+  };
+
+  const plans = [
+    {
+      name: "Basic Premium",
+      icon: <MdEco className="plan-icon green" />,
+      benefits: [
+        "Coverage for mild weather disruptions",
+        "Basic payout triggers",
+        "Limited risk alerts",
+        "Standard processing priority",
+        "Weekly insights",
+        "Basic support"
+      ]
+    },
+    {
+      name: "Standard Premium",
+      icon: <MdBolt className="plan-icon orange" />,
+      benefits: [
+        "Coverage for moderate risks",
+        "Enhanced trigger accuracy",
+        "Real-time alerts",
+        "Faster payouts",
+        "Heatmap insights",
+        "Priority support"
+      ]
+    },
+    {
+      name: "Dynamic Premium",
+      icon: <MdAutoGraph className="plan-icon purple" />,
+      benefits: [
+        "Full environmental + social coverage",
+        "Dynamic risk adjustment",
+        "Instant payouts",
+        "AI-based alerts",
+        "Live heatmap tracking",
+        "Top-tier support"
+      ]
+    }
+  ];
+
   return (
     <div className="policy-container">
 
-      {/* Header */}
+      {/* HEADER */}
       <div className="policy-header">
-        <h2>Policy & Conditions</h2>
+        <h2>Policy Section</h2>
       </div>
 
-      {/* Content */}
+      {/* WHITE CONTENT */}
       <div className="policy-content">
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdSecurity className="icon blue" />
-            <h3>Coverage Scope</h3>
-          </div>
-          <p>
-            Coverage is provided for food delivery riders based on predefined
-            environmental and social triggers such as weather disruptions,
-            protests, and abnormal delivery delays.
-          </p>
+        {/* TITLE */}
+        <div className="policy-title">
+          <h3>Premium Plans</h3>
         </div>
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdFlashOn className="icon purple" />
-            <h3>Parametric Trigger Mechanism</h3>
+        {/* TOGGLE */}
+        <div className="toggle-switch">
+          <div className={`switch ${planType === "biweekly" ? "right" : ""}`}>
+            <div className="option" onClick={() => setPlanType("daily")}>
+              Daily
+            </div>
+            <div className="option" onClick={() => setPlanType("biweekly")}>
+              Biweekly
+            </div>
           </div>
-          <p>
-            Payouts are activated automatically when trigger conditions are met
-            using real-time data from weather, traffic, and public events.
-          </p>
         </div>
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdPayments className="icon green" />
-            <h3>Automatic Payouts</h3>
-          </div>
-          <p>
-            Compensation is processed instantly without manual claims, reducing
-            delays and ensuring quick financial support.
-          </p>
-        </div>
+        {/* PLANS */}
+        {plans.map((plan, index) => (
+          <div
+            key={index}
+            className="plan-card"
+            onClick={() => setActive(active === index ? null : index)}
+          >
+            <div className="plan-header">
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdReport className="icon orange" />
-            <h3>Limitations</h3>
-          </div>
-          <p>
-            Only predefined trigger conditions are covered. Individual or
-            unverified incidents are excluded from payouts.
-          </p>
-        </div>
+              <div className="plan-left">
+                {plan.icon}
+                <h3>{plan.name}</h3>
+              </div>
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdVerifiedUser className="icon red" />
-            <h3>Anti-Fraud Measures</h3>
-          </div>
-          <p>
-            Multi-layer verification ensures authenticity using location data,
-            behavior tracking, and anomaly detection.
-          </p>
-        </div>
+              <div className="plan-right">
+                <p>₹{pricing[planType][index]}</p>
+                <MdKeyboardArrowDown
+                  className={active === index ? "rotate" : ""}
+                />
+              </div>
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdPerson className="icon teal" />
-            <h3>User Responsibility</h3>
-          </div>
-          <p>
-            Riders must maintain accurate data and follow platform guidelines.
-            Misuse may lead to suspension.
-          </p>
-        </div>
+            </div>
 
-        <div className="policy-section">
-          <div className="section-title">
-            <MdInfo className="icon gray" />
-            <h3>Policy Updates</h3>
+            {active === index && (
+              <ul className="benefits">
+                {plan.benefits.map((b, i) => (
+                  <li key={i}>{i + 1}. {b}</li>
+                ))}
+              </ul>
+            )}
+
           </div>
-          <p>
-            Terms and trigger conditions may evolve based on real-world risk
-            patterns and system improvements.
-          </p>
-        </div>
+        ))}
 
       </div>
 
-      {/* Bottom Nav */}
+      {/* NAVBAR */}
       <div className="bottom-nav">
         <div className="nav-item">
           <MdHome size={20} />
           <span>Dashboard</span>
         </div>
 
-        <div className="nav-item">
+        <div className="nav-item active">
           <MdAttachMoney size={20} />
           <span>Pricing</span>
         </div>
 
-        <div className="nav-item active">
+        <div className="nav-item">
           <MdPerson size={20} />
-          <span>Policy</span>
+          <span>Profile</span>
         </div>
       </div>
 

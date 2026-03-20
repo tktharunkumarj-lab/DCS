@@ -13,9 +13,8 @@
 
 /* HEADER */
 .policy-header {
-  padding: 20px;
+  padding: 35px 20px 25px;
   text-align: center;
-  font-weight: 600;
 }
 
 /* CONTENT */
@@ -23,49 +22,146 @@
   background: white;
   color: #333;
   flex: 1;
-  padding: 15px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   overflow-y: auto;
 }
 
-/* SECTION */
-.policy-section {
-  background: #f4f4f4;
-  padding: 12px;
+/* TITLE */
+.policy-title {
+  text-align: center;
 }
 
-/* TITLE WITH ICON */
-.section-title {
+.policy-title h3 {
+  color: #6a11cb;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* TOGGLE */
+.toggle-switch {
+  display: flex;
+  justify-content: center;
+}
+
+.switch {
+  display: flex;
+  background: #eee;
+  width: 220px;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.option {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  z-index: 2;
+  font-weight: 500;
+}
+
+/* SLIDER */
+.switch::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: #6a11cb;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+  border-radius: 25px;
+}
+
+.switch.right::before {
+  left: 50%;
+}
+
+.switch .option {
+  color: #333;
+}
+
+.switch:not(.right) .option:first-child {
+  color: white;
+  font-weight: bold;
+}
+
+.switch.right .option:last-child {
+  color: white;
+  font-weight: bold;
+}
+
+/* PLAN CARD */
+.plan-card {
+  background: #f4f4f4;
+  padding: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* HEADER */
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plan-left {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 5px;
+  gap: 12px;
 }
 
-.section-title h3 {
-  font-size: 15px;
+.plan-left h3 {
+  font-size: 19px;
+  font-weight: 600;
 }
 
-/* ICON BASE */
-.icon {
-  font-size: 20px;
+/* RIGHT */
+.plan-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* COLORS */
-.icon.blue { color: #2575fc; }
-.icon.purple { color: #6a11cb; }
-.icon.green { color: #28a745; }
-.icon.orange { color: #ff9800; }
-.icon.red { color: #dc3545; }
-.icon.teal { color: #20c997; }
-.icon.gray { color: #6c757d; }
+.plan-right p {
+  font-weight: bold;
+  color: #6a11cb;
+  font-size: 18px;
+}
 
-/* TEXT */
-.policy-section p {
-  font-size: 13px;
-  line-height: 1.4;
+/* ICONS */
+.plan-icon {
+  font-size: 24px;
+}
+
+.green { color: #28a745; }
+.orange { color: #ff9800; }
+.purple { color: #6a11cb; }
+
+/* ARROW */
+.plan-header svg {
+  transition: transform 0.3s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+/* BENEFITS */
+.benefits {
+  margin-top: 12px;
+  padding-left: 18px;
+}
+
+.benefits li {
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
 /* NAVBAR */
@@ -78,6 +174,7 @@
   background: white;
   padding: 10px;
   z-index: 30;
+  border-radius: 15px 15px 0 0;
 }
 
 .nav-item {
@@ -102,4 +199,5 @@
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 5px;
 }
