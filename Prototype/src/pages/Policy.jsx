@@ -80,10 +80,10 @@ const navigate = useNavigate();
         <div className="toggle-switch">
           <div className={`switch ${planType === "biweekly" ? "right" : ""}`}>
             <div className="option" onClick={() => setPlanType("daily")}>
-              Daily
+              Weekly
             </div>
             <div className="option" onClick={() => setPlanType("biweekly")}>
-              Biweekly
+              Monthly
             </div>
           </div>
         </div>
