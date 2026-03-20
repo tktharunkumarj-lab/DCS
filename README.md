@@ -155,7 +155,9 @@ Phase 1 begins with two days of planning where the product backlog is created, a
 Phase 2 focuses on building the core parametric engine, including weather and news API integration, dynamic premium calculation with reasoning, condition tracking, and automatic payout logging. Initially, hardcoded thresholds are used as a stability measure before transitioning to API-driven values.
 
 Phase 3 emphasizes system refinement, adding fraud detection, dashboard features, mobile testing, and an ethical audit on data and fairness. The cycle concludes with a retrospective that documents limitations, future improvements, and key decisions for transparency.
-
+<p align="center">
+  <img src="./Prototype/src/assets/Agile.png" width="400"/>
+</p>
 **2\. Literature Review and Domain Insights**
 
 **Key Observations:**
